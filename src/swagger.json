@@ -1,0 +1,135 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Crypto Tracker API",
+      "description": "API for tracking cryptocurrency prices and statistics",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "https://crypto-tracker-three-livid.vercel.app/",
+        "description": "Development server"
+      }
+    ],
+    "paths": {
+      "/stats": {
+        "get": {
+          "tags": ["Cryptocurrency"],
+          "summary": "Get latest cryptocurrency statistics",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "coin",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "enum": ["bitcoin", "matic-network", "ethereum"]
+              },
+              "description": "Cryptocurrency identifier"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Latest cryptocurrency statistics",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Stats"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid coin ID",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/deviation": {
+        "get": {
+          "tags": ["Cryptocurrency"],
+          "summary": "Get price standard deviation from last 100 records",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "coin",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "enum": ["bitcoin", "matic-network", "ethereum"]
+              },
+              "description": "Cryptocurrency identifier"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Price standard deviation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Deviation"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid coin ID or insufficient data",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Stats": {
+          "type": "object",
+          "properties": {
+            "price": {
+              "type": "number",
+              "description": "Current price in USD"
+            },
+            "marketCap": {
+              "type": "number",
+              "description": "Current market cap in USD"
+            },
+            "24hChange": {
+              "type": "number",
+              "description": "24-hour price change percentage"
+            }
+          }
+        },
+        "Deviation": {
+          "type": "object",
+          "properties": {
+            "deviation": {
+              "type": "number",
+              "description": "Standard deviation of price from last 100 records"
+            }
+          }
+        },
+        "Error": {
+          "type": "object",
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "Error message"
+            }
+          }
+        }
+      }
+    }
+  }
