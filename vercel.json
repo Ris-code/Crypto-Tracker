@@ -9,6 +9,10 @@
     ],
     "routes": [
         {
+            "src": "/swagger.json",
+            "dest": "src/app.js"
+        },
+        {
             "src": "/api-docs/(.*)",
             "dest": "src/app.js"
         },
