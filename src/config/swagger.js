@@ -10,12 +10,12 @@ const options = {
     },
     servers: [
       {
-        url: 'https://crypto-tracker-three-livid.vercel.app/',
-        description: 'Development server',
+        url: process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000',
+        description: 'API Server',
       },
     ],
   },
-  apis: ['./src/routes/*.js'], // Path to the API routes
+  apis: ['./src/routes/*.js'],
 };
 
 const specs = swaggerJsdoc(options);
