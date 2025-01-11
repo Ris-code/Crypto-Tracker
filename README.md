@@ -2,8 +2,8 @@
 
 Crypto-Tracker is a Node.js-based API for tracking cryptocurrency prices and statistics, including price updates, standard deviation analysis, and real-time data retrieval. It leverages MongoDB for data storage, CoinGecko API for fetching cryptocurrency data, and Express.js for API routing. 
 
-- **Deployed backend**: `https://crypto-tracker-three-livid.vercel.app/`
-- **Swagger for Endpoint Testing**: `https://crypto-tracker-three-livid.vercel.app/api-docs/`
+- **Deployed backend**: https://crypto-tracker-three-livid.vercel.app/
+- **Swagger for Endpoint Testing**: https://crypto-tracker-three-livid.vercel.app/api-docs/
 
 ## Features
 
